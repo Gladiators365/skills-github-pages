@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BondSure CRM Prototype</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>BondSure CRM (Prototype)</h1>
+        <nav>
+            <button onclick="showView('dashboard')">Dashboard</button>
+            <button onclick="showView('clientList')">Clients</button>
+            <button onclick="showView('addClient')">Add New Client</button>
+            <button onclick="showView('addBailCase')">Add Bail Case</button>
+            <button onclick="showView('addInsurancePolicy')">Add Insurance Policy</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Dashboard View -->
+        <div id="dashboard" class="view active">
+            <h2>Dashboard</h2>
+            <p>Welcome to the BondSure CRM Prototype.</p>
+            <p>Use the navigation above to manage clients, bail cases, and insurance policies.</p>
+            <div id="dashboard-summary">
+                <p>Total Clients: <span id="totalClients">0</span></p>
+                <p>Total Bail Cases: <span id="totalBailCases">0</span></p>
+                <p>Total Insurance Policies: <span id="totalInsurancePolicies">0</span></p>
+            </div>
+        </div>
+
+        <!-- Client List View -->
+        <div id="clientList" class="view">
+            <h2>Client List</h2>
+            <table id="clientsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Client rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add Client View -->
+        <div id="addClient" class="view">
+            <h2>Add New Client</h2>
+            <form id="addClientForm">
+                <label for="clientName">Name:</label>
+                <input type="text" id="clientName" required>
+
+                <label for="clientPhone">Phone:</label>
+                <input type="tel" id="clientPhone">
+
+                <label for="clientEmail">Email:</label>
+                <input type="email" id="clientEmail">
+
+                <label for="clientAddress">Address:</label>
+                <textarea id="clientAddress"></textarea>
+
+                <label for="clientDOB">Date of Birth:</label>
+                <input type="date" id="clientDOB">
+
+                <label for="clientSSN">SSN (Demo Only - No Real Security):</label>
+                <input type="text" id="clientSSN">
+
+                <label for="clientType">Initial Type:</label>
+                <select id="clientType">
+                    <option value="Prospect">Prospect</option>
+                    <option value="Bail">Bail Client</option>
+                    <option value="Insurance">Insurance Client</option>
+                </select>
+
+                <button type="submit">Save Client</button>
+            </form>
+        </div>
+
+        <!-- Client Detail View -->
+        <div id="clientDetail" class="view">
+            <h2>Client Details</h2>
+            <div id="clientDetailContent"></div>
+            <button onclick="showView('clientList')">Back to List</button>
+        </div>
+
+        <!-- Add Bail Case View -->
+        <div id="addBailCase" class="view">
+            <h2>Add New Bail Case</h2>
+            <form id="addBailCaseForm">
+                <label for="bailClientSelect">Client (Indemnitor):</label>
+                <select id="bailClientSelect" required>
+                    <!-- Options populated by JS -->
+                </select>
+
+                <label for="defendantName">Defendant Name:</label>
+                <input type="text" id="defendantName" required>
+
+                <label for="charges">Charges:</label>
+                <input type="text" id="charges">
+
+                <label for="bondAmount">Bond Amount ($):</label>
+                <input type="number" id="bondAmount" required>
+
+                <label for="premiumCharged">Premium Charged ($):</label>
+                <input type="number" id="premiumCharged" required>
+
+                <label for="courtDate">Court Date:</label>
+                <input type="date" id="courtDate">
+
+                 <label for="ownsHome">Does Indemnitor Own Home? (For Demo)</label>
+                 <select id="ownsHome">
+                    <option value="unknown">Unknown</option>
+                    <option value="yes">Yes</option>
+                     <option value="no">No</option>
+                 </select>
+
+                 <label for="hasVehicle">Does Indemnitor Have Vehicle? (For Demo)</label>
+                 <select id="hasVehicle">
+                    <option value="unknown">Unknown</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                 </select>
+
+
+                <button type="submit">Save Bail Case & Trigger Cross-Sell</button>
+            </form>
+        </div>
+
+         <!-- Add Insurance Policy View -->
+         <div id="addInsurancePolicy" class="view">
+            <h2>Add Insurance Policy</h2>
+            <form id="addInsurancePolicyForm">
+                 <label for="insuranceClientSelect">Client:</label>
+                <select id="insuranceClientSelect" required>
+                    <!-- Options populated by JS -->
+                </select>
+
+                <label for="policyType">Policy Type:</label>
+                <select id="policyType">
+                    <option value="Auto">Auto</option>
+                    <option value="Home">Home</option>
+                    <option value="Renters">Renters</option>
+                    <option value="Life">Life</option>
+                    <option value="Business">Business</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="carrier">Carrier:</label>
+                <input type="text" id="carrier">
+
+                <label for="policyNumber">Policy Number:</label>
+                <input type="text" id="policyNumber">
+
+                <label for="policyPremium">Premium ($):</label>
+                <input type="number" id="policyPremium">
+
+                <label for="effectiveDate">Effective Date:</label>
+                <input type="date" id="effectiveDate">
+
+                <label for="expirationDate">Expiration Date:</label>
+                <input type="date" id="expirationDate">
+
+                <button type="submit">Save Insurance Policy</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>BondSure CRM Prototype - Data stored in local browser storage only.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
